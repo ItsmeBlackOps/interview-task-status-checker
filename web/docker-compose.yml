@@ -9,7 +9,9 @@ services:
     restart: always
     ports:
       - "4392:3000"
+    # Loads from .env by default if present
     env_file:
-      - .env.local
+      - .env
     environment:
       - NODE_ENV=production
+      # - MONGODB_URI=mongodb://... (Or set in .env)
