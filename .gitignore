@@ -1,0 +1,9 @@
+.env
+.env.local
+node_modules
+.next
+.vscode
+dist
+build
+.DS_Store
+.gemini
