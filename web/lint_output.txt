@@ -1,0 +1,50 @@
+
+> web@0.1.0 lint
+> eslint
+
+
+C:\Users\Harsh.patel\Projects\interview-task-status-checker\web\app\api\mismatches\route.ts
+    2:8   warning  'mongoose' is defined but never used      @typescript-eslint/no-unused-vars
+   90:21  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  125:21  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Harsh.patel\Projects\interview-task-status-checker\web\app\api\reports\route.ts
+  15:27  warning  'req' is defined but never used           @typescript-eslint/no-unused-vars
+  32:37  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  64:21  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Harsh.patel\Projects\interview-task-status-checker\web\app\api\validations\route.ts
+  12:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  35:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Harsh.patel\Projects\interview-task-status-checker\web\components\MismatchFeed.tsx
+    6:81   warning  'MessageSquare' is defined but never used                        @typescript-eslint/no-unused-vars
+    6:109  warning  'ChevronUp' is defined but never used                            @typescript-eslint/no-unused-vars
+    6:120  warning  'Copy' is defined but never used                                 @typescript-eslint/no-unused-vars
+   23:40   error    Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   27:12   warning  'copiedId' is assigned a value but never used                    @typescript-eslint/no-unused-vars
+   44:54   error    Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   76:33   error    Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   97:26   warning  'e' is defined but never used                                    @typescript-eslint/no-unused-vars
+  112:11   warning  'handleCopy' is assigned a value but never used                  @typescript-eslint/no-unused-vars
+  130:36   error    Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  237:30   error    Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  291:73   error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  291:85   error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  327:94   error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\Harsh.patel\Projects\interview-task-status-checker\web\components\MonitorFeed.tsx
+  18:40  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Harsh.patel\Projects\interview-task-status-checker\web\components\ReplyModal.tsx
+  1:10  warning  'Fragment' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Harsh.patel\Projects\interview-task-status-checker\web\lib\mongodb.ts
+  14:40  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  17:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Harsh.patel\Projects\interview-task-status-checker\web\models\Task.ts
+  20:15  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+Γ£û 27 problems (18 errors, 9 warnings)
+

@@ -11,10 +11,14 @@ interface MongooseCache {
     promise: Promise<Mongoose> | null;
 }
 
-let cached: MongooseCache = (global as any).mongoose;
+declare global {
+    var mongoose: MongooseCache | undefined;
+}
+
+let cached: MongooseCache = global.mongoose || { conn: null, promise: null };
 
 if (!cached) {
-    cached = (global as any).mongoose = { conn: null, promise: null };
+    cached = global.mongoose = { conn: null, promise: null };
 }
 
 const opts = {

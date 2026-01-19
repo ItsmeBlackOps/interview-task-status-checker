@@ -12,15 +12,18 @@ interface StatusBadgeProps {
 }
 
 const STATUS_COLORS: Record<string, string> = {
-    'Pending': 'bg-yellow-100 text-yellow-800 border-yellow-200',
-    'Completed': 'bg-green-100 text-green-800 border-green-200',
-    'Rejected': 'bg-red-100 text-red-800 border-red-200',
-    'In Progress': 'bg-blue-100 text-blue-800 border-blue-200',
-    'Mismatch': 'bg-orange-100 text-orange-800 border-orange-200',
-    // Add more as needed
+    'Completed': 'bg-green-500/10 text-green-400 border-green-500/20',
+    'Not Done': 'bg-red-500/10 text-red-400 border-red-500/20',
+    'Pending': 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
+    'Cancelled': 'bg-slate-500/10 text-slate-400 border-slate-500/20',
+    'Acknowledged': 'bg-blue-500/10 text-blue-400 border-blue-500/20',
+    'Assigned': 'bg-purple-500/10 text-purple-400 border-purple-500/20',
+    'Rescheduled': 'bg-orange-500/10 text-orange-400 border-orange-500/20',
+
+    // Legacy / Fallback
 };
 
-const DEFAULT_COLOR = 'bg-slate-100 text-slate-800 border-slate-200';
+const DEFAULT_COLOR = 'bg-slate-500/10 text-slate-400 border-slate-500/20';
 
 export default function StatusBadge({ status, onChange, disabled }: StatusBadgeProps) {
     const colorClass = STATUS_COLORS[status] || DEFAULT_COLOR;

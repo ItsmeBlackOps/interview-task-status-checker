@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import mongoose from 'mongoose';
+
 import dbConnect from '@/lib/mongodb';
 import Task, { ITask } from '@/models/Task';
 
@@ -47,7 +47,7 @@ export async function GET() {
             async start(controller) {
                 const encoder = new TextEncoder();
                 // Cursor to iterate huge dataset
-                const cursor = Task.find({}).lean().cursor();
+                const cursor = Task.find({ "actualRound": { "$exists": true } }).lean().cursor();
 
                 for await (const doc of cursor) {
                     const task = doc as unknown as ITask;
@@ -87,9 +87,9 @@ export async function GET() {
             }
         });
 
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Mismatches API Error:", error);
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        return NextResponse.json({ error: (error as Error).message }, { status: 500 });
     }
 }
 
@@ -122,8 +122,8 @@ export async function PATCH(req: Request) {
 
         return NextResponse.json({ success: true });
 
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Mismatches PATCH Error:", error);
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        return NextResponse.json({ error: (error as Error).message }, { status: 500 });
     }
 }

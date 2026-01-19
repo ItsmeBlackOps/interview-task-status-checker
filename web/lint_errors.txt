@@ -1,0 +1,42 @@
+
+> web@0.1.0 lint
+> eslint
+
+
+C:\Users\Harsh.patel\Projects\interview-task-status-checker\web\app\api\mismatches\route.ts
+    2:8   warning  'mongoose' is defined but never used      @typescript-eslint/no-unused-vars
+   90:21  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  125:21  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Harsh.patel\Projects\interview-task-status-checker\web\app\api\reports\route.ts
+  28:27  warning  'req' is defined but never used           @typescript-eslint/no-unused-vars
+  45:37  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  77:21  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Harsh.patel\Projects\interview-task-status-checker\web\app\api\validations\route.ts
+  12:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  35:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Harsh.patel\Projects\interview-task-status-checker\web\app\page.tsx
+  5:71  warning  'LogIn' is defined but never used  @typescript-eslint/no-unused-vars
+  5:78  warning  'Menu' is defined but never used   @typescript-eslint/no-unused-vars
+  5:84  warning  'X' is defined but never used      @typescript-eslint/no-unused-vars
+
+C:\Users\Harsh.patel\Projects\interview-task-status-checker\web\components\ReplyModal.tsx
+  1:10  warning  'Fragment' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Harsh.patel\Projects\interview-task-status-checker\web\components\ValidationFeed.tsx
+   5:60  warning  'FileText' is defined but never used        @typescript-eslint/no-unused-vars
+   5:70  warning  'User' is defined but never used            @typescript-eslint/no-unused-vars
+  27:12  warning  'error' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  71:18  warning  'e' is defined but never used               @typescript-eslint/no-unused-vars
+
+C:\Users\Harsh.patel\Projects\interview-task-status-checker\web\lib\mongodb.ts
+  14:40  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  17:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Harsh.patel\Projects\interview-task-status-checker\web\models\Task.ts
+  20:15  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+Γ£û 19 problems (9 errors, 10 warnings)
+
