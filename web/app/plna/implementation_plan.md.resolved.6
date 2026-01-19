@@ -1,0 +1,46 @@
+# Implementation Plan - Actual Round Mismatch
+
+## Goal Description
+Implement a new password-protected "Mismatch" tab that identifies tasks where the `actualRound` (extracted from email replies via regex) deviates from a strict allowed list.
+
+## Proposed Changes
+
+### Logic & API
+#### [NEW] [api/mismatches/route.ts](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/app/api/mismatches/route.ts)
+- **GET Endpoint**:
+  - Fetch all tasks with replies.
+  - Iterate replies, sort by `receivedDateTime` (ASC).
+  - Apply Python-ported logic (Regex + Normalization) to find the *latest* `actualRound`.
+  - Allowed List: `["1st Round", "2nd Round", "3rd Round", "4th Round", "Screening", "On Demand or AI Interview", "5th Round", "Technical Round", "Coding Round", "Final Round", "Loop Round"]`.
+  - Filter tasks where `calculatedRound` is NOT in the allowed list (or is missing/null if user implies that). The python script prints updates if found. I will return mismatches.
+- **PATCH Endpoint**:
+  - Allow updating `actualRound` for a specific task.
+
+### Frontend
+#### [NEW] [MismatchFeed.tsx](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/components/MismatchFeed.tsx)
+- Fetch from `/api/mismatches`.
+- Display tasks in a feed layout (similar to Monitor).
+- Highlight the `calculatedRound` value.
+- Provide "Edit" button to manually fix the `actualRound`.
+- Provide "Copy" button for the value.
+
+#### [MODIFY] [page.tsx](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/app/page.tsx)
+- Add "Mismatch" tab.
+- Apply password protection `Hkpatel@21` (shared with Monitor/Validations).
+
+## Verification Plan
+1.  **API Verification**: Call `/api/mismatches` and check if it identifies known mismatch scenarios.
+2.  **UI Access**: Ensure the tab requires password.
+3.  **Visual Highlight**: Verify the "bad" value is shown clearly.
+4.  **Correction**: Use the Edit feature to "fix" a mismatch (set it to a valid value) and verify it disappears from the list (or resolves).
+
+### Mismatch UI Alignment
+#### [MODIFY] [MismatchFeed.tsx]
+- **Streaming**: Switch data fetching to consume NDJSON stream using `ReadableStream` reader (standardize with [TaskFeed](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/components/TaskFeed.tsx#30-476)).
+- **ReplyModal**: Replace inline expansion with [ReplyModal](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/components/ReplyModal.tsx#18-201) interaction.
+- **Edit in Modal**: Enable "Change Round" directly from the [ReplyModal](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/components/ReplyModal.tsx#18-201) conversation view.
+- **Visuals**: Match [TaskFeed](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/components/TaskFeed.tsx#30-476) styles (dates, badges, IDs).
+
+#### [MODIFY] [api/mismatches/route.ts]
+- **Streaming Response**: Convert to return `h3/ndjson` stream instead of JSON array.
+- **Fields**: Return `Date of Interview`, [id](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/app/api/validations/route.ts#26-30), and complete `replies` array.

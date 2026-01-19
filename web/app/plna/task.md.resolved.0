@@ -1,0 +1,5 @@
+# Task: Fix Status Dropdown Issue
+
+- [ ] Investigate code to identify the issue <!-- id: 0 -->
+- [ ] Fix the Status dropdown bug <!-- id: 1 -->
+- [ ] Verify the fix <!-- id: 2 -->

@@ -1,0 +1,45 @@
+# Walkthrough - Mismatch Tab Refinement
+
+I have refined the **Mismatch Tab** to match the high standards of the Anomaly Monitor and Task Feed.
+
+## Key Changes
+
+### 1. Performance: Streaming Data
+- **Implementation**: Converted `/api/mismatches` to stream data using **NDJSON**.
+- **Benefit**: The page now loads progressively, showing tasks as they are processed instead of waiting for the entire set. This significantly improves perceived performance.
+
+### 2. Enhanced UI & Usability
+- **Reply Modal Integration**: Replaced the inline "evidence" toggle with the powerful [ReplyModal](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/components/ReplyModal.tsx#19-223).
+    - View full email conversation history.
+    - **Edit Round**: You can now correct the "Current Round" directly from the modal header.
+- **Card Layout**:
+    - **Left**: Candidate Name, Status, Subject (with Copy button), and Mismatch Badge.
+    - **Center**: "Extracted Round" acts as the source of truth (or "Not Found").
+    - **Right**: "Current Round" is now a direct dropdown selector for immediate fixes.
+- **Visuals**:
+    - Removed the "ID Badge" as requested to declutter the view.
+    - Added "Date of Interview" display.
+    - Aligned colors and spacing with the main design system.
+
+### 2a. Bulk Updates [NEW]
+- **Selection**: Added checkboxes to easily select multiple tasks.
+- **Select All**: Toggle select all visible tasks.
+- **Floating Action Bar**: Appears at the bottom when items are selected.
+- **Bulk Action**: Set the `currentRound` for all selected items at once.
+
+### 2b. Data Fixes [NEW]
+- **Subject**: Fixed an issue where the Subject field was missing. Now robustly checks for different casing.
+- **API**: Updated PATCH endpoint to support bulk updates (`ids` array).
+
+### 3. Backend Validation
+- **Usage**: Parsing the streaming response in [MismatchFeed.tsx](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/components/MismatchFeed.tsx).
+- **Validation**: Ensure only valid rounds from `ALLOWED_ROUNDS` are saved to the database.
+- **Strict Filter**: API now explicitly filters for tasks where `actualRound` exists AND is NOT in `ALLOWED_ROUNDS`. This ensures the feed only displays actionable data.
+
+## Verification
+- **Manual Test**:
+    1. Open Mismatch Tab.
+    2. Confirm data streams in (cards appear one by one).
+    3. Click "View Evidence" -> Modal opens with replies.
+    4. Change round in Modal dropdown -> Updates UI.
+    5. Change round in Card dropdown -> Updates UI.

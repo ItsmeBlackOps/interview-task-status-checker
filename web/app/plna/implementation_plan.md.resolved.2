@@ -1,0 +1,35 @@
+# Implement Reports Tab & Tab Security
+
+## Goal Description
+Implement a "Reports" tab that aggregates interview data by Branch (GGR, LKO, AHM) and Interview Round. The report should look modern and beautiful (one-pager style). Additionally, implement password protection for accessing tabs as requested.
+
+## User Review Required
+- **Branch Logic**: `sender` OR `cc` contains "tushar.ahuja" (GGR), "aryan.mishra" (LKO), "akash.avasthi" (AHM).
+- **Password Protection**: The user request "in another tab also in previous two tabs password is required ... while this report tab is open" is interpreted as enforcing a password check (`Hkpatel@21`) when accessing restricted tabs. I will implement a mechanism to lock specific tabs.
+
+## Proposed Changes
+### Backend
+#### [NEW] [app/api/reports/route.ts](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/app/api/reports/route.ts)
+-   Fetch all tasks.
+-   Helper to determine Branch:
+    -   `GGR`: `tushar.ahuja`
+    -   `LKO`: `aryan.mishra`
+    -   `AHM`: `akash.avasthi`
+-   Aggregate data: `{ [Branch]: { [Round]: { [Status]: count } } }`.
+
+### Frontend
+#### [MODIFY] [app/page.tsx](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/app/page.tsx)
+-   Add `Reports` to `activeTab` state.
+-   Add `PasswordProtection` state/modal.
+-   Require password when switching to tabs based on rules (Interpretation: Lock all, or lock Monitor/Validations if Reports is open? I will implement a generic lock that can be applied to any tab).
+
+#### [NEW] [components/ReportsFeed.tsx](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/components/ReportsFeed.tsx)
+-   UI for the report.
+-   Use Grid/Masonry layout for "One Pager" feel.
+-   Cards for each Branch -> Inner cards/lists for Rounds.
+
+## Verification Plan
+### Manual Verification
+1.  Verify `/api/reports` returns correct aggregations.
+2.  Verify Reports UI rendering (modern styling).
+3.  Verify Password Prompt works for "Hkpatel@21".

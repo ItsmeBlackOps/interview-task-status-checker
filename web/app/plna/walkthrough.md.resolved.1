@@ -1,0 +1,31 @@
+# Walkthrough - Reports Date Filter & Monitor Enhancements
+
+I have successfully implemented the requested enhancements for the Reports tab and Anomaly Monitor.
+
+## Changes
+
+### 1. Interactive Reports with Date Filtering
+*   **Added Date Pickers:** The Reports tab now features "From Date" and "To Date" inputs in the header.
+*   **Filtering Logic:** The system correctly parses the string-based "Date of Interview" field to filter tasks by the selected date range.
+*   **Robustness:** Fixed a critical crash issue by ensuring correct React Hook ordering in [ReportsFeed.tsx](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/components/ReportsFeed.tsx).
+
+### 2. Anomaly Monitor Enhancements
+*   **Copy Subject:** Added a dedicated copy button next to the Candidate Name in the task list.
+*   **Hover Interaction:** The button appears on hover to keep the UI clean, with a tooltip showing the full subject line.
+
+## User Interface
+
+### Reports Tab (Filtered)
+The Reports tab now allows you to view analytics for specific timeframes (e.g., after Dec 25, 2025).
+
+![Filtered Reports Tab](/Users/Administrator/.gemini/antigravity/brain/6906293e-7074-49ea-a174-f5b53bade772/reports_tab_filtered_1768784803096.png)
+
+### Copy Subject Feature
+A new clipboard icon appears when hovering over a task, allowing quick access to the subject line.
+
+![Copy Subject Button](/Users/Administrator/.gemini/antigravity/brain/6906293e-7074-49ea-a174-f5b53bade772/.system_generated/click_feedback/click_feedback_1768784497518.png)
+
+## Validation Results
+*   **Date Filter:** Verified that setting a date range correctly refreshes the report data without errors.
+*   **Copy Button:** Confirmed that the button appears on hover and triggers the clipboard action.
+*   **Stability:** Resolved a "React Hook Order" error to ensure the Reports tab loads reliably.

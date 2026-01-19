@@ -1,0 +1,38 @@
+# Implementation Plan - Reports Filtering & Monitor Enhancements
+
+## Goal Description
+Enhance the Reports tab with interactive date filtering (specifically for dates after Dec 25, 2025) and improve the Anomaly Monitor with a "Copy Subject" feature.
+
+## User Review Required
+None specifically, but note that date filtering relies on string parsing of "MM/DD/YYYY".
+
+## Proposed Changes
+
+### Reports Tab (Date Filtering)
+#### [MODIFY] [route.ts](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/app/api/reports/route.ts)
+- Add query parameter handling for `startDate` and `endDate`.
+- Add filtering logic to parse `Date of Interview` string and compare against the range.
+- **Logic:** `new Date(taskDateTime) >= new Date(startDate)`
+
+#### [MODIFY] [ReportsFeed.tsx](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/components/ReportsFeed.tsx)
+- Add State for `startDate` and `endDate`.
+- Add Date Input UI to the header.
+- Pass these params to [fetchReport](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/components/ReportsFeed.tsx#42-55).
+
+### Anomaly Monitor (Copy Subject)
+#### [MODIFY] [TaskFeed.tsx](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/components/TaskFeed.tsx)
+- Update [ITask](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/components/TaskFeed.tsx#18-28) interface to include `Subject` (optional).
+- Add a hover button next to Candidate Name that copies `task.Subject || "No Subject"` to clipboard.
+- Use `navigator.clipboard.writeText`.
+
+## Verification Plan
+
+### Manual Verification
+1.  **Reports Filter:**
+    - Open Reports Tab.
+    - Set Start Date to `2025-12-25`.
+    - Verify counts change and reflect only future/recent tasks.
+2.  **Copy Subject:**
+    - Hover over a task in Anomaly Monitor.
+    - Click the clipboard icon.
+    - Paste into a notepad to verify content.

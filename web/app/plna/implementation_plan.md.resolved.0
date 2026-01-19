@@ -1,0 +1,21 @@
+# Fix Status Dropdown Issue
+
+## Goal Description
+The "Statuses dropdown" is missing the "Rescheduled" status option, although it is supported in the styling logic. This plan aims to add the missing status to the dropdown.
+
+## Proposed Changes
+### Web
+#### [MODIFY] [StatusBadge.tsx](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/components/StatusBadge.tsx)
+- Add "Rescheduled" to `STATUS_OPTIONS` constant.
+- Use the same orange styling defined in [getColor](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/components/StatusBadge.tsx#12-24) for the new option: `bg-orange-50 text-orange-700 hover:bg-orange-100`.
+
+## Verification Plan
+### Automated Tests
+- None. This is a UI constant update.
+
+### Manual Verification
+1.  Open the web application.
+2.  Locate a task status badge.
+3.  Click on the badge to open the dropdown.
+4.  Verify that "Rescheduled" appears in the list.
+5.  Select "Rescheduled" and verify the badge captures the status and updates the color to orange.

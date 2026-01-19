@@ -1,0 +1,45 @@
+# Task: Implement Reports Tab & Security
+
+- [x] Create API Endpoint for Reports (`/api/reports`) <!-- id: 0 -->
+    - [x] Fetch all tasks.
+    - [x] Implement Branch logic (GGR/LKO/AHM based on sender/cc).
+    - [x] Aggregate counts by Branch > Round > Status.
+- [x] Implement Password Protection Logic <!-- id: 1 -->
+    - [x] Handle security in `page.tsx`.
+    - [x] Apply password rule ("Hkpatel@21") to Monitor and Validations tabs only.
+    - [x] Allow public access to Reports tab.
+- [x] Create `components/ReportsFeed.tsx` <!-- id: 2 -->
+    - [x] Fetch data from `/api/reports`.
+    - [x] Create "Beautiful" UI (Modern cards, grid layout, stats).
+- [x] Update `page.tsx` with new Tab and Security <!-- id: 3 -->
+- [x] Verify functionality <!-- id: 4 -->
+- [x] Implement Reports Date Filter (API & UI) <!-- id: 5 -->
+- [x] Implement Copy Subject Button in Anomaly Monitor <!-- id: 6 -->
+- [ ] Implement "Mismatch Tab" <!-- id: 7 -->
+    - [x] Create API `/api/mismatches` with python-port logic.
+    - [x] Create `components/MismatchFeed.tsx` with Edit/Copy support.
+    - [x] Update `page.tsx` with secure tab.
+- [x] Refine Mismatch Tab <!-- id: 8 -->
+    - [x] API: Include `replies` in response.
+    - [x] API: Flag as mismatch if current value is not in Allowed List.
+    - [x] UI: Add "Copy Subject" button.
+    - [x] UI: Add "Copy Subject" button.
+    - [x] UI: Expand row to show replies with highlighted keywords.
+    - [x] Refinement V2: Streaming Data Loading (NDJSON)
+    - [x] Refinement V2: Integrate ReplyModal for Evidence
+    - [x] Refinement V2: Edit Round in ReplyModal & Feed Dropdown
+    - [x] Refinement V2: Edit Round in ReplyModal (Fixed visibility for empty rounds) & Feed Dropdown
+    - [x] Refinement V2: UI Alignment (Remove ID, Date Display)
+    - [x] Refinement V2: UI Alignment (Remove ID, Date Display)
+    - [x] Refinement V3: Lazy Loading / Infinite Scroll (Client-side Pagination)
+    - [x] Refinement V3: Card Interaction (Click-to-Open, Remove Button)
+    - [x] GitHub Repository Setup (Repo Created & Pushed)
+    - [x] Refinement V4: Validations - Bulk Update (Selection & Floating Bar)
+    - [x] Refinement V4: Validations - Subject Field Fix
+    - [x] Refinement V5: UI - Disable current invalid value in dropdown
+    - [x] Refinement V6: Remove key functionality (trash icon)
+    - [x] Refinement V6: Fix JSX Syntax Errors
+    - [x] Refinement V6: Custom Delete Confirmation Modal
+    - [x] Refinement V5: Removed legacy `Interview Round` logic
+    - [x] Documentation: Created Implementation Plan for Restored Components
+

@@ -1,0 +1,36 @@
+# Walkthrough - Reports Date Filter & Monitor Enhancements
+
+I have successfully implemented the requested enhancements for the Reports tab and Anomaly Monitor.
+
+## Changes
+
+### 1. Interactive Reports with Date Filtering
+*   **Added Date Pickers:** The Reports tab now features "From Date" and "To Date" inputs in the header.
+*   **Filtering Logic:** The system correctly parses the string-based "Date of Interview" field to filter tasks by the selected date range.
+*   **Robustness:** Fixed a critical crash issue by ensuring correct React Hook ordering in [ReportsFeed.tsx](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/components/ReportsFeed.tsx).
+
+### 2. Anomaly Monitor Enhancements
+*   **Copy Subject:** Added a dedicated copy button next to the Candidate Name in the task list.
+*   **Hover Interaction:** The button appears on hover to keep the UI clean, with a tooltip showing the full subject line.
+
+## User Interface
+
+### Reports Tab (Filtered)
+The app now opens to the **Reports** tab by default, which is publicly accessible. This tab allows you to view analytics for specific timeframes (e.g., after Dec 25, 2025).
+
+### Access Control & Mismatches
+The **Anomaly Monitor**, **Validations**, and the new **Mismatches** tabs are protected. Clicking them requires entering the password ("Hkpatel@21").
+
+### Round Mismatches & Evidence
+The Mismatches tab scans email replies to detect discrepancies.
+- **Strict Validation:** Flags tasks even if the extracted value matches the DB, but the DB value is not in the allowed list.
+- **Evidence View:** Click "View Evidence" to see email replies with the extracted round **highlighted**.
+- **Actions:** Copy Subject, Copy Extracted Value, or Fix the round using the allowed list. Status is read-only in this view.
+
+### Copy Subject Feature
+A new clipboard icon appears when hovering over a task, allowing quick access to the subject line.
+
+## Validation Results
+*   **Date Filter:** Verified that setting a date range correctly refreshes the report data without errors.
+*   **Copy Button:** Confirmed that the button appears on hover and triggers the clipboard action.
+*   **Stability:** Resolved a "React Hook Order" error to ensure the Reports tab loads reliably.

@@ -1,0 +1,18 @@
+# Task: Implement Reports Tab & Security
+
+- [x] Create API Endpoint for Reports (`/api/reports`) <!-- id: 0 -->
+    - [x] Fetch all tasks.
+    - [x] Implement Branch logic (GGR/LKO/AHM based on sender/cc).
+    - [x] Aggregate counts by Branch > Round > Status.
+- [x] Implement Password Protection Logic <!-- id: 1 -->
+    - [ ] Create `components/PasswordLock.tsx` or handle in [page.tsx](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/app/page.tsx).
+    - [ ] Apply password rule ("Hkpatel@21") to required tabs (Monitor, Validations, Reports?).
+- [x] Create [components/ReportsFeed.tsx](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/components/ReportsFeed.tsx) <!-- id: 2 -->
+    - [x] Fetch data from `/api/reports`.
+    - [x] Create "Beautiful" UI (Modern cards, grid layout, stats).
+- [ ] Update [page.tsx](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/app/page.tsx) with new Tab and Security <!-- id: 3 -->
+    - [ ] Create "Beautiful" UI (Modern cards, grid layout, stats).
+- [ ] Update [page.tsx](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/app/page.tsx) with new Tab and Security <!-- id: 3 -->
+- [x] Verify functionality <!-- id: 4 -->
+- [x] Implement Reports Date Filter (API & UI) <!-- id: 5 -->
+- [x] Implement Copy Subject Button in Anomaly Monitor <!-- id: 6 -->

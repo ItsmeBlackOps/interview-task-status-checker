@@ -1,0 +1,41 @@
+# Implement Validations Tab
+
+## Goal Description
+Create a new "Validations" tab in the application to show tasks where the "Date of Interview" matches today's date (EST). For these tasks, validate specific fields (Subject, Candidate Name, Technology, etc.) against defined rules and identifying anomalies.
+
+## User Review Required
+- **Validation Rules**: Ensuring regex/logic matches strictly to "Title Case", specific string literals, etc.
+- **Date Handling**: "Today EST" vs "Date of Interview" string format.
+- **Subject Formula**: Extracting parts from "Interview Support - {Name} - {Tech} - {Date}".
+
+## Proposed Changes
+### Backend / API
+#### [NEW] [api/validations/route.ts](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/app/api/validations/route.ts)
+- New API route to:
+    1.  Calculate "Today in EST".
+    2.  Query MongoDB for tasks where `Date of Interview` matches today.
+    3.  Iterate through tasks and run validation logic:
+        -   `Subject` pattern match.
+        -   `Candidate Name` title case check.
+        -   `Interview Round` enum check.
+        -   Etc.
+    4.  Return tasks with an added `validationResult` object.
+
+### Frontend
+#### [MODIFY] [app/page.tsx](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/app/page.tsx)
+-   Introduce a Tab state (Anomaly Monitor | Validations).
+-   Conditionally render [TaskFeed](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/components/TaskFeed.tsx#29-456) or new `ValidationsFeed`.
+
+#### [NEW] [components/ValidationsFeed.tsx](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/components/ValidationsFeed.tsx)
+-   Similar to [TaskFeed](file:///c:/Users/Administrator/Projects/Interview%20Task%20Status%20Checker/web/components/TaskFeed.tsx#29-456) but fetches from `/api/validations`.
+-   Displays validation errors clearly (e.g., Red text for invalid fields).
+
+## Verification Plan
+### Automated Tests
+-   None planned for this iteration.
+
+### Manual Verification
+1.  Open app, verify "Validations" tab exists.
+2.  Click tab, verify it loads tasks for "Today EST".
+3.  Check if valid tasks show as valid.
+4.  Check if invalid tasks show specific errors (e.g., "Subject formula mismatch").
