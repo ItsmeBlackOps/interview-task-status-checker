@@ -14,9 +14,9 @@ function getBranch(task: ITask): string {
 
     const text = (task.sender + ' ' + ccString).toLowerCase();
 
-    if (text.includes('tushar.ahuja')) return 'GGR';
-    if (text.includes('akash.avasthi')) return 'AHM';
     if (text.includes('aryan.mishra')) return 'LKO';
+    if (text.includes('akash.avasthi')) return 'AHM';
+    if (text.includes('tushar.ahuja')) return 'GGR';
 
     return 'Other';
 }
