@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { RefreshCw, Search, CheckSquare, Square, X, Calendar } from 'lucide-react';
+import { RefreshCw, Search, CheckSquare, Square, X, Calendar, Copy, Check } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import StatusBadge from './StatusBadge';
@@ -130,6 +130,15 @@ export default function MonitorFeed() {
     // Reply Modal State
     const [selectedTask, setSelectedTask] = useState<MonitorTask | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [copiedId, setCopiedId] = useState<string | null>(null);
+
+    const handleCopyTitle = (e: React.MouseEvent, task: MonitorTask) => {
+        e.stopPropagation();
+        const title = task.subject || '';
+        navigator.clipboard.writeText(title);
+        setCopiedId(task._id);
+        setTimeout(() => setCopiedId(null), 1500);
+    };
 
     const openModal = (task: MonitorTask) => {
         setSelectedTask(task);
@@ -235,7 +244,16 @@ export default function MonitorFeed() {
                                 {selectedIds.has(task._id) ? <CheckSquare className="text-purple-400" /> : <Square className="text-slate-500 group-hover:text-slate-300 transition-colors" />}
                             </div>
                             <div className="flex-1 min-w-0">
-                                <h3 className="text-lg font-bold text-slate-200 truncate">{task['Candidate Name'] || task.candidateName || task.subject || 'Untitled Task'}</h3>
+                                <div className="flex items-center gap-2">
+                                    <h3 className="text-lg font-bold text-slate-200 truncate">{task['Candidate Name'] || task.candidateName || task.subject || 'Untitled Task'}</h3>
+                                    <button
+                                        onClick={(e) => handleCopyTitle(e, task)}
+                                        className="shrink-0 p-1 rounded hover:bg-white/10 text-slate-500 hover:text-slate-200 transition-colors opacity-0 group-hover:opacity-100"
+                                        title="Copy title"
+                                    >
+                                        {copiedId === task._id ? <Check size={14} className="text-green-400" /> : <Copy size={14} />}
+                                    </button>
+                                </div>
                                 <div className="flex items-center gap-2 text-sm text-slate-400 mt-1">
                                     <Calendar size={14} /> {task.receivedDateTime || task['Date of Interview'] || task.date || task.dateOfInterview || 'No Date'}
                                 </div>
