@@ -1,6 +1,6 @@
-import { Fragment } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, MessageSquare, Calendar } from 'lucide-react';
+import { X, MessageSquare, Calendar, Copy, Check } from 'lucide-react';
 
 interface Reply {
     id?: string;
@@ -16,7 +16,7 @@ interface ReplyModalProps {
     onClose: () => void;
     replies: Reply[];
     taskTitle: string;
-    subject?: string;
+    taskSubject?: string;
     currentInterviewRound?: string;
     taskId?: string;
     onUpdateRound?: (newRound: string) => void;
@@ -35,12 +35,21 @@ export default function ReplyModal({
     onClose,
     replies,
     taskTitle,
-    subject,
+    taskSubject,
     currentInterviewRound,
     onUpdateRound,
     currentStatus,
     onUpdateStatus
 }: ReplyModalProps) {
+    const [copied, setCopied] = useState(false);
+
+    const handleCopySubject = () => {
+        const text = taskSubject || taskTitle || '';
+        navigator.clipboard.writeText(text);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 1500);
+    };
+
     return (
         <AnimatePresence>
             {isOpen && (
@@ -61,11 +70,20 @@ export default function ReplyModal({
                         {/* Header */}
                         <div className="p-6 border-b border-white/5 flex items-start justify-between bg-slate-900 shrink-0 sticky top-0 z-10">
                             <div>
-                                <h3 className="text-xl font-bold text-white line-clamp-1 pr-4">
-                                    {taskTitle || 'Email Thread'}
-                                </h3>
-                                {subject && (
-                                    <p className="text-sm text-slate-400 mt-1 line-clamp-2 pr-4">{subject}</p>
+                                <div className="flex items-center gap-2 pr-4">
+                                    <h3 className="text-xl font-bold text-white line-clamp-1">
+                                        {taskTitle || 'Email Thread'}
+                                    </h3>
+                                    <button
+                                        onClick={handleCopySubject}
+                                        className="shrink-0 p-1.5 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
+                                        title="Copy subject"
+                                    >
+                                        {copied ? <Check size={15} className="text-green-400" /> : <Copy size={15} />}
+                                    </button>
+                                </div>
+                                {taskSubject && (
+                                    <p className="text-sm text-slate-400 mt-1 line-clamp-2 pr-4">{taskSubject}</p>
                                 )}
                                 <div className="flex items-center gap-4 mt-2">
                                     <div className="flex items-center gap-2">

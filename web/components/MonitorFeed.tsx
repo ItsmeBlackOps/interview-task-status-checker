@@ -152,7 +152,7 @@ export default function MonitorFeed() {
                 onClose={() => { setIsModalOpen(false); setSelectedTask(null); }}
                 replies={(selectedTask as any)?.replies || []}
                 taskTitle={selectedTask ? (selectedTask['Candidate Name'] || selectedTask.candidateName || 'Unknown') : ''}
-                subject={selectedTask?.subject}
+                taskSubject={selectedTask?.subject || ''}
                 currentStatus={selectedTask?.status}
                 onUpdateStatus={(newStatus) => selectedTask && handleUpdateStatus(selectedTask._id, newStatus)}
             />
