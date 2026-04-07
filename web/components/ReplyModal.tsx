@@ -16,6 +16,7 @@ interface ReplyModalProps {
     onClose: () => void;
     replies: Reply[];
     taskTitle: string;
+    subject?: string;
     currentInterviewRound?: string;
     taskId?: string;
     onUpdateRound?: (newRound: string) => void;
@@ -34,6 +35,7 @@ export default function ReplyModal({
     onClose,
     replies,
     taskTitle,
+    subject,
     currentInterviewRound,
     onUpdateRound,
     currentStatus,
@@ -62,6 +64,9 @@ export default function ReplyModal({
                                 <h3 className="text-xl font-bold text-white line-clamp-1 pr-4">
                                     {taskTitle || 'Email Thread'}
                                 </h3>
+                                {subject && (
+                                    <p className="text-sm text-slate-400 mt-1 line-clamp-2 pr-4">{subject}</p>
+                                )}
                                 <div className="flex items-center gap-4 mt-2">
                                     <div className="flex items-center gap-2">
                                         <span className="text-sm text-slate-400">Extracted Round:</span>
